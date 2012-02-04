@@ -18,6 +18,11 @@ package org.springextensions.neodatis;
 
 import org.springframework.dao.DataAccessException;
 
+/**
+ * 
+ * @author Joerg Bellmann
+ *
+ */
 public final class NeoDatisUtils {
 
     public static DataAccessException translateException(Exception e) {

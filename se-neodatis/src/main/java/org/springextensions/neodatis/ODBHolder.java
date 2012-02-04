@@ -19,6 +19,11 @@ package org.springextensions.neodatis;
 import org.neodatis.odb.ODB;
 import org.springframework.transaction.support.ResourceHolderSupport;
 
+/**
+ * 
+ * @author Joerg Bellmann
+ *
+ */
 public class ODBHolder extends ResourceHolderSupport {
 
     private final ODB odb;

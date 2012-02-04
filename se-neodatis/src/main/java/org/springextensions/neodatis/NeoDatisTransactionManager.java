@@ -30,6 +30,11 @@ import org.springframework.transaction.support.DefaultTransactionStatus;
 import org.springframework.transaction.support.SmartTransactionObject;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+/**
+ * 
+ * @author Joerg Bellmann
+ *
+ */
 @SuppressWarnings("serial")
 public class NeoDatisTransactionManager extends AbstractPlatformTransactionManager implements InitializingBean {
 

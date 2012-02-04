@@ -18,6 +18,11 @@ package org.springextensions.neodatis;
 
 import org.springframework.dao.UncategorizedDataAccessException;
 
+/**
+ * 
+ * @author Joerg Bellmann
+ *
+ */
 @SuppressWarnings("serial")
 public class NeoDatisSystemException extends UncategorizedDataAccessException {
 

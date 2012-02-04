@@ -20,6 +20,11 @@ import org.neodatis.odb.ODB;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.dao.DataAccessException;
 
+/**
+ * 
+ * @author Joerg Bellmann
+ *
+ */
 public abstract class NeoDatisAccessor implements InitializingBean {
 
     private ODB odb;

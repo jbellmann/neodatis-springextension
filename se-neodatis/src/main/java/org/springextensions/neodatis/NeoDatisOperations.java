@@ -36,6 +36,11 @@ import org.neodatis.odb.core.trigger.UpdateTrigger;
 import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 import org.springframework.dao.DataAccessException;
 
+/**
+ * 
+ * @author Joerg Bellmann
+ *
+ */
 public interface NeoDatisOperations {
 
     Object execute(NeoDatisCallback callback) throws DataAccessException;

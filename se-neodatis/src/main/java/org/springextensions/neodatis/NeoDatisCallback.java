@@ -18,6 +18,11 @@ package org.springextensions.neodatis;
 
 import org.neodatis.odb.ODB;
 
+/**
+ * 
+ * @author Joerg Bellmann
+ *
+ */
 public interface NeoDatisCallback {
 
     Object doInNeoDatis(ODB odb) throws RuntimeException;
