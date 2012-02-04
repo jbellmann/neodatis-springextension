@@ -16,24 +16,23 @@
 
 package org.springextensions.neodatis;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.mockito.Mockito;
 import org.neodatis.odb.ODB;
-import org.springframework.transaction.support.ResourceHolderSupport;
 
 /**
  * 
  * @author Joerg Bellmann
- * 
+ *
  */
-public class ODBHolder extends ResourceHolderSupport {
-
-	private final ODB odb;
-
-	public ODBHolder(ODB odb) {
-		this.odb = odb;
-	}
-
-	public ODB getOdb() {
-		return this.odb;
+public class ODBHolderTest {
+	
+	@Test
+	public void testOdbHolder(){
+		ODB odb = Mockito.mock(ODB.class);
+		ODBHolder odbHolder = new ODBHolder(odb);
+		Assert.assertSame(odb, odbHolder.getOdb());
 	}
 
 }

@@ -21,12 +21,12 @@ import org.springframework.dao.DataAccessException;
 /**
  * 
  * @author Joerg Bellmann
- *
+ * 
  */
 public final class NeoDatisUtils {
 
-    public static DataAccessException translateException(Exception e) {
-        return new NeoDatisSystemException(e.getMessage(), e);
-    }
+	public static DataAccessException translateException(Exception e) {
+		return new NeoDatisSystemException(e.getMessage(), e);
+	}
 
 }

@@ -29,58 +29,58 @@ import org.springframework.beans.factory.FactoryBeanNotInitializedException;
 /**
  * 
  * @author Joerg Bellmann
- *
+ * 
  */
 public class ODBFactoryBean implements FactoryBean<ODB> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ODBFactoryBean.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ODBFactoryBean.class);
 
-    private ODB odb;
+	private ODB odb;
 
-    private String filename;
+	private String filename;
 
-    @Override
-    public ODB getObject() throws Exception {
-        if (odb == null) {
-            throw new FactoryBeanNotInitializedException("ODB not opened.");
-        }
-        return odb;
-    }
+	@Override
+	public ODB getObject() throws Exception {
+		if (odb == null) {
+			throw new FactoryBeanNotInitializedException("ODB not opened.");
+		}
+		return odb;
+	}
 
-    @Override
-    public Class<ODB> getObjectType() {
-        return ODB.class;
-    }
+	@Override
+	public Class<ODB> getObjectType() {
+		return ODB.class;
+	}
 
-    @Override
-    public boolean isSingleton() {
-        return true;
-    }
+	@Override
+	public boolean isSingleton() {
+		return true;
+	}
 
-    @PostConstruct
-    public void initialize() {
-        if (filename != null) {
-            odb = openOdb();
-        } else {
-            throw new IllegalArgumentException("Filename is mandantory.");
-        }
-        LOG.info("ODB opened.");
-    }
+	@PostConstruct
+	public void initialize() {
+		if (filename != null) {
+			odb = openOdb();
+		} else {
+			throw new IllegalArgumentException("Filename is mandantory.");
+		}
+		LOG.info("ODB opened.");
+	}
 
-    protected ODB openOdb() {
-        return ODBFactory.open(filename);
-    }
+	protected ODB openOdb() {
+		return ODBFactory.open(filename);
+	}
 
-    @PreDestroy
-    public void destroy() {
-        if(!odb.isClosed()){
-        	odb.close();
-        	LOG.info("Closing ODB");
-        }
-    }
+	@PreDestroy
+	public void destroy() {
+		if (!odb.isClosed()) {
+			odb.close();
+			LOG.info("Closing ODB");
+		}
+	}
 
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
 }

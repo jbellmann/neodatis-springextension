@@ -18,38 +18,53 @@ package org.springextensions.neodatis;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Rule;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 import org.neodatis.odb.ODB;
 
 /**
  * 
  * @author Joerg Bellmann
- *
+ * 
  */
 public class ODBFactoryBeanTest {
 
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+	private ODBFactoryBean odbFactoryBean;
 
-    private ODB odb;
+	@Before
+	public void setUp() {
+		odbFactoryBean = new ODBFactoryBean();
+		odbFactoryBean.setFilename("target/ODBFactoryBeanTest.neodatis");
+		odbFactoryBean.initialize();
+	}
 
-    @After
-    public void tearDown() {
-        if (odb != null && !odb.isClosed()) {
-            odb.close();
-        }
-    }
+	@After
+	public void tearDown() {
+		odbFactoryBean.destroy();
+	}
 
-    @Test
-    public void testODBFactoryBean() throws Exception {
-        //        String filename = folder.newFile().getAbsolutePath();
-        ODBFactoryBean factoryBean = new ODBFactoryBean();
-        factoryBean.setFilename("target/ODBFactoryBeanTest.neodatis");
-        factoryBean.initialize();
-        odb = factoryBean.getObject();
-        Assert.assertNotNull(odb);
-        Assert.assertFalse(odb.isClosed());
-    }
+	@Test
+	public void testGetObject() throws Exception {
+		ODB odb = odbFactoryBean.getObject();
+		Assert.assertNotNull(odb);
+		Assert.assertFalse(odb.isClosed());
+	}
+
+	@Test
+	public void testIsSingleton() {
+		Assert.assertTrue(odbFactoryBean.isSingleton());
+	}
+
+	@Test
+	public void testObjectType() {
+		Assert.assertTrue(ODB.class.isAssignableFrom(odbFactoryBean
+				.getObjectType()));
+	}
+
+	@Test
+	public void testDestroy() throws Exception {
+		Assert.assertFalse(odbFactoryBean.getObject().isClosed());
+		odbFactoryBean.destroy();
+		Assert.assertTrue(odbFactoryBean.getObject().isClosed());
+	}
 }
