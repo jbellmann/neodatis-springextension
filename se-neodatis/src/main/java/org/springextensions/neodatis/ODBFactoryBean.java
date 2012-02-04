@@ -26,6 +26,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.FactoryBeanNotInitializedException;
 
+/**
+ * 
+ * @author Joerg Bellmann
+ *
+ */
 public class ODBFactoryBean implements FactoryBean<ODB> {
 
     private static final Logger LOG = LoggerFactory.getLogger(ODBFactoryBean.class);
@@ -68,8 +73,10 @@ public class ODBFactoryBean implements FactoryBean<ODB> {
 
     @PreDestroy
     public void destroy() {
-        LOG.info("Closing ODB");
-        odb.close();
+        if(!odb.isClosed()){
+        	odb.close();
+        	LOG.info("Closing ODB");
+        }
     }
 
     public void setFilename(String filename) {
