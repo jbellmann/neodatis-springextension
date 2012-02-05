@@ -1,3 +1,4 @@
 rootProject.name = 'neodatis-springextension'
 
 include 'se-neodatis'
+include 'se-neodatis-example'

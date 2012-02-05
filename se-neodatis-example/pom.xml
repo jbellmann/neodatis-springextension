@@ -1,22 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
+    <parent>
   	<groupId>org.springextensions.neodatis</groupId>
   	<artifactId>neodatis-springextension</artifactId>
   	<version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>se-neodatis</artifactId>
+  <artifactId>se-neodatis-example</artifactId>
   <name>NeoDatis Spring-Extension -- ${project.artifactId}</name>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.neodatis.odb</groupId>
-			<artifactId>neodatis-odb</artifactId>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>se-neodatis</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>commons-logging</groupId>
@@ -28,10 +28,29 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 		</dependency>
+				<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+				<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
 		<!-- CGLIB, only required and used for @Configuration usage -->
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>10.0.1</version>
 		</dependency>
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
@@ -81,4 +100,14 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.googlecode.t7mp</groupId>
+        <artifactId>maven-t7-plugin</artifactId>
+        <version>0.9.10.M1</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>
