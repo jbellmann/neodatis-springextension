@@ -1,17 +1,69 @@
 <!DOCTYPE html> 
-
-<html xmlns:th="http://www.thymeleaf.org"> 
-
-  <head> 
-    <title>Spring MVC view layer: Thymeleaf vs. JSP</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-    <link rel="stylesheet" type="text/css" media="all" href="../../css/thvsjsp.css" th:href="@{/css/thvsjsp.css}"/> 
+<html  xmlns:th="http://www.thymeleaf.org"> 
+  <head>
+    <meta charset="utf-8">
+    <title>Spring MVC view layer: Thymeleaf vs. JSP</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <link rel="stylesheet" media="all" href="../../resources/bootstrap/20/css/bootstrap.css" th:href="@{/resources/bootstrap/20/css/bootstrap.css}"/>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="../../resources/bootstrap/20/css/bootstrap-responsive.css" th:href="@{/resources/bootstrap/20/css/bootstrap-responsive.css}" rel="stylesheet"> 
   </head> 
 
-  <body> 
-
-    <h2>This is a Thymeleaf template</h2> 
-
+  <body>
+  	<div class="container">
+	    <div class="page-header">
+	        <h2>This is a Thymeleaf template</h2> 
+	    </div>
+	    <div class="row">
+	    	<div class="span5">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Firstname</th>
+							<th>Lastname</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Klaus</td>
+							<td>Meier</td>
+						</tr>
+						<tr>
+							<td>Ralf</td>
+							<td>Peters</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+    </div> <!-- container -->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../resources/bootstrap/20/js/jquery.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-transition.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-alert.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-modal.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-dropdown.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-scrollspy.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-tab.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-tooltip.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-popover.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-button.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-collapse.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-carousel.js"></script>
+    <script src="../../resources/bootstrap/20/js/bootstrap-typeahead.js"></script>
   </body> 
-   
 </html>
