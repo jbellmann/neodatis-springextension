@@ -12,38 +12,41 @@ import com.google.common.collect.Lists;
 
 @Repository
 public class NeoDatisPersonDao implements PersonDao {
-	
-	@Autowired
-	private NeoDatisTemplate neoDatisTemplate;
 
-	@Override
-	public List<Person> findAll() {
-		Objects<Person> result = neoDatisTemplate.getObjects(Person.class);
-		return Lists.newArrayList(result);
-	}
+    @Autowired
+    private NeoDatisTemplate neoDatisTemplate;
 
-	@Override
-	public Person findByFirstname(String firstname) {
-		Objects<Person> personsWithFirstname = neoDatisTemplate.getObjects(new PersonByFirstname(firstname));
-		return personsWithFirstname.getFirst();
-	}
+    @Override
+    public List<Person> findAll() {
+        Objects<Person> result = neoDatisTemplate.getObjects(Person.class);
+        return Lists.newArrayList(result);
+    }
 
-	@Override
-	public void save(Person p) {
-		neoDatisTemplate.store(p);
-	}
+    @Override
+    public Person findByFirstname(String firstname) {
+        Objects<Person> personsWithFirstname = neoDatisTemplate.getObjects(new PersonByFirstname(firstname));
+        if (personsWithFirstname.isEmpty()) {
+            return null;
+        }
+        return personsWithFirstname.getFirst();
+    }
 
-	@SuppressWarnings("serial")
-	static final class PersonByFirstname extends SimpleNativeQuery {
-		
-		private final String firstname;
-		
-		public PersonByFirstname(String firstname) {
-			this.firstname = firstname;
-		}
-		
-		public boolean match(Person person) {
+    @Override
+    public void save(Person p) {
+        neoDatisTemplate.store(p);
+    }
+
+    @SuppressWarnings("serial")
+    static final class PersonByFirstname extends SimpleNativeQuery {
+
+        private final String firstname;
+
+        public PersonByFirstname(String firstname) {
+            this.firstname = firstname;
+        }
+
+        public boolean match(Person person) {
             return person.getFirstname().equals(firstname);
         }
-	}
+    }
 }
