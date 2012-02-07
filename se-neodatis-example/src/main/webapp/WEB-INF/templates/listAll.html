@@ -36,16 +36,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Klaus</td>
-							<td>Meier</td>
-						</tr>
-						<tr>
-							<td>Ralf</td>
-							<td>Peters</td>
+						<tr th:each="p : ${personList}">
+							<td th:text="${p.firstname}">Klaus</td>
+							<td th:text="${p.lastname}">Meier</td>
 						</tr>
 					</tbody>
 				</table>
+				<a class="btn" href="#" th:href="@{/create}">New Person</a>
 			</div>
 		</div>
     </div> <!-- container -->
