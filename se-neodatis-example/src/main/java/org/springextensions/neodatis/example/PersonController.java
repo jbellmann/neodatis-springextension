@@ -3,6 +3,7 @@ package org.springextensions.neodatis.example;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,7 @@ public class PersonController {
     public String createPersonForm(Model model) {
         PersonForm pForm = new PersonForm();
         model.addAttribute(pForm);
-        return "createPerson";
+        return "create";
     }
 
     @RequestMapping(value = "/delete/{firstname}", method = RequestMethod.GET)
@@ -53,15 +54,15 @@ public class PersonController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @Transactional
-    public String createPersonForm(PersonForm personForm, Model model, BindingResult bindingResult,
+    public String createPersonForm(@Valid PersonForm personForm, BindingResult bindingResult,
             RedirectAttributes redirectAttributes, HttpSession session) {
         if (bindingResult.hasErrors()) {
             return null;
         }
         Person p = personDao.findByFirstname(personForm.getFirstname());
         if (p != null) {
-            throw new UsernameExistException("A user with the firstname " + personForm.getFirstname()
-                    + " exists already.");
+            bindingResult.rejectValue("firstname", "person.firstname.exist");
+            return null;
         } else {
             personDao.save(personForm.getPerson());
             redirectAttributes.addFlashAttribute("createMessage",

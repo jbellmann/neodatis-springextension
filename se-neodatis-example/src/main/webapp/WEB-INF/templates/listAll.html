@@ -35,7 +35,7 @@
 	    		</div>
                 <div id="alertbox" th:if="${deleteMessage}">
                     <div class="alert">
-                        <strong th:text="${deleteMessage}">Peter Meier created ...</strong>
+                        <strong th:text="${deleteMessage}">Peter Meier deleted ...</strong>
                     </div>
                 </div>
 				<table class="table table-striped">
@@ -57,7 +57,7 @@
 						</tbody>
 					</div>
 				</table>
-				<a class="btn" href="#" th:href="@{/create}">New Person</a>
+				<a class="btn btn-primary" href="#" th:href="@{/create}">New Person</a>
 			</div>
 		</div>
     </div> <!-- container -->
