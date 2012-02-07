@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -21,7 +22,7 @@ public class PersonController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String listAll(Model model) {
         List<Person> personList = personDao.findAll();
-        model.addAttribute(personList);
+        model.addAttribute("personList", personList);
         return "listAll";
     }
 
@@ -39,20 +40,26 @@ public class PersonController {
         return "createPerson";
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.GET, params = "firstname")
+    public String deletePerson(@RequestParam("firstname") String firstname, RedirectAttributes redirectAttributes) {
+        Person toDelete = this.personDao.findByFirstname(firstname);
+        this.personDao.delete(toDelete);
+        //        redirectAttributes.addFlashAttribute("deleteMessage", toDelete.getFirstname() + "" + toDelete.getLastname() + " delteted.");
+        return "redirect:/";
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @Transactional
-    public String createPersonForm(PersonForm personForm, Model model, BindingResult bindingResult,
-            RedirectAttributes redirectAttributes) {
+    public String createPersonForm(PersonForm personForm, Model model, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return null;
         }
         Person p = personDao.findByFirstname(personForm.getFirstname());
         if (p != null) {
-            throw new UsernameExistException("A user with the firstname " + personForm.getFirstname()
-                    + " exists already.");
+            throw new UsernameExistException("A user with the firstname " + personForm.getFirstname() + " exists already.");
         } else {
             personDao.save(personForm.getPerson());
-            redirectAttributes.addFlashAttribute("message", "Person created ...");
+            //            redirectAttributes.addFlashAttribute("createMessage", personForm.getFirstname() + " " + personForm.getLastname() + "created ...");
         }
         return "redirect:/";
     }

@@ -36,6 +36,11 @@ public class NeoDatisPersonDao implements PersonDao {
         neoDatisTemplate.store(p);
     }
 
+    @Override
+    public void delete(Person p) {
+        neoDatisTemplate.delete(p);
+    }
+
     @SuppressWarnings("serial")
     static final class PersonByFirstname extends SimpleNativeQuery {
 

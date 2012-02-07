@@ -28,6 +28,11 @@
 	    </div>
 	    <div class="row">
 	    	<div class="span5">
+	    		<div id="alertbox">
+		    		<div class="alert alert-success">
+		    			<strong th:text="${createMessage}">Peter Meier created ...</strong>
+		    		</div>
+	    		</div>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -35,12 +40,17 @@
 							<th>Lastname</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr th:each="p : ${personList}">
-							<td th:text="${p.firstname}">Klaus</td>
-							<td th:text="${p.lastname}">Meier</td>
-						</tr>
-					</tbody>
+					<div id="personTableBody" th:unless="${#lists.isEmpty(personList)}">
+						<tbody>
+							<tr th:each="p : ${personList}">
+								<td th:text="${p.firstname}">Klaus</td>
+								<td th:text="${p.lastname}">Meier</td>
+								<td>
+									<a class="btn" href="#" th:href="@{/delete(firstname=${p.firstname})}">Delete</a>
+								</td>
+							</tr>
+						</tbody>
+					</div>
 				</table>
 				<a class="btn" href="#" th:href="@{/create}">New Person</a>
 			</div>

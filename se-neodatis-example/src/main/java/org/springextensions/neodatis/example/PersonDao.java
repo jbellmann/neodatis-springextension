@@ -3,11 +3,13 @@ package org.springextensions.neodatis.example;
 import java.util.List;
 
 public interface PersonDao {
-	
-	List<Person> findAll();
 
-	Person findByFirstname(String firstname);
+    List<Person> findAll();
 
-	void save(Person p);
+    Person findByFirstname(String firstname);
+
+    void save(Person p);
+
+    void delete(Person p);
 
 }
