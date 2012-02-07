@@ -14,48 +14,48 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableTransactionManagement(mode=AdviceMode.ASPECTJ)
+@EnableTransactionManagement(mode = AdviceMode.PROXY)
 public class DataConfig {
-	
-	@Autowired
-	private ODB odb;
-	
-	@Bean
-	public PlatformTransactionManager transactionManager() throws Exception{
-		return new NeoDatisTransactionManager(odb);
-	}
-	
-	@Bean
-	public NeoDatisTemplate neodatisTemplate() throws Exception{
-		return new NeoDatisTemplate(odb);
-	}
-	
-	@Configuration
-	@Profile("test")
-	static class Test {
-		
-		@Bean
-		public ODBFactoryBean odbFactoryBean(){
-			ODBFactoryBean odbFactoryBean = new ODBFactoryBean();
-			odbFactoryBean.setFilename("target/test.neodatis");
-			return odbFactoryBean;
-		}
-		
-	}
-	
-	@Configuration
-	@Profile("standard")
-	static class Standard {
-		
-		@Autowired
-		private Environment environment;
-		
-		@Bean
-		public ODBFactoryBean odbFactoryBean(){
-			ODBFactoryBean odbFactoryBean = new ODBFactoryBean();
-			odbFactoryBean.setFilename(environment.getProperty("neodatis.filename"));
-			return odbFactoryBean;
-		}
-	}
+
+    @Autowired
+    private ODB odb;
+
+    @Bean
+    public PlatformTransactionManager transactionManager() throws Exception {
+        return new NeoDatisTransactionManager(odb);
+    }
+
+    @Bean
+    public NeoDatisTemplate neodatisTemplate() throws Exception {
+        return new NeoDatisTemplate(odb);
+    }
+
+    @Configuration
+    @Profile("test")
+    static class Test {
+
+        @Bean
+        public ODBFactoryBean odbFactoryBean() {
+            ODBFactoryBean odbFactoryBean = new ODBFactoryBean();
+            odbFactoryBean.setFilename("target/test.neodatis");
+            return odbFactoryBean;
+        }
+
+    }
+
+    @Configuration
+    @Profile("standard")
+    static class Standard {
+
+        @Autowired
+        private Environment environment;
+
+        @Bean
+        public ODBFactoryBean odbFactoryBean() {
+            ODBFactoryBean odbFactoryBean = new ODBFactoryBean();
+            odbFactoryBean.setFilename(environment.getProperty("neodatis.filename"));
+            return odbFactoryBean;
+        }
+    }
 
 }

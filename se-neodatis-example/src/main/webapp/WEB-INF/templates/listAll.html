@@ -28,11 +28,16 @@
 	    </div>
 	    <div class="row">
 	    	<div class="span5">
-	    		<div id="alertbox">
+	    		<div id="alertbox" th:if="${createMessage}">
 		    		<div class="alert alert-success">
 		    			<strong th:text="${createMessage}">Peter Meier created ...</strong>
 		    		</div>
 	    		</div>
+                <div id="alertbox" th:if="${deleteMessage}">
+                    <div class="alert">
+                        <strong th:text="${deleteMessage}">Peter Meier created ...</strong>
+                    </div>
+                </div>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -46,7 +51,7 @@
 								<td th:text="${p.firstname}">Klaus</td>
 								<td th:text="${p.lastname}">Meier</td>
 								<td>
-									<a class="btn" href="#" th:href="@{/delete(firstname=${p.firstname})}">Delete</a>
+									<a class="btn" href="#" th:href="@{'/delete/' + ${p.firstname}}">Delete</a>
 								</td>
 							</tr>
 						</tbody>

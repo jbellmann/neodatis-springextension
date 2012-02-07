@@ -2,6 +2,8 @@ package org.springextensions.neodatis.example;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -40,26 +41,31 @@ public class PersonController {
         return "createPerson";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET, params = "firstname")
-    public String deletePerson(@RequestParam("firstname") String firstname, RedirectAttributes redirectAttributes) {
+    @RequestMapping(value = "/delete/{firstname}", method = RequestMethod.GET)
+    @Transactional
+    public String deletePerson(@PathVariable("firstname") String firstname, RedirectAttributes redirectAttributes) {
         Person toDelete = this.personDao.findByFirstname(firstname);
         this.personDao.delete(toDelete);
-        //        redirectAttributes.addFlashAttribute("deleteMessage", toDelete.getFirstname() + "" + toDelete.getLastname() + " delteted.");
+        redirectAttributes.addFlashAttribute("deleteMessage", toDelete.getFirstname() + " " + toDelete.getLastname()
+                + " deleted.");
         return "redirect:/";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @Transactional
-    public String createPersonForm(PersonForm personForm, Model model, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String createPersonForm(PersonForm personForm, Model model, BindingResult bindingResult,
+            RedirectAttributes redirectAttributes, HttpSession session) {
         if (bindingResult.hasErrors()) {
             return null;
         }
         Person p = personDao.findByFirstname(personForm.getFirstname());
         if (p != null) {
-            throw new UsernameExistException("A user with the firstname " + personForm.getFirstname() + " exists already.");
+            throw new UsernameExistException("A user with the firstname " + personForm.getFirstname()
+                    + " exists already.");
         } else {
             personDao.save(personForm.getPerson());
-            //            redirectAttributes.addFlashAttribute("createMessage", personForm.getFirstname() + " " + personForm.getLastname() + "created ...");
+            redirectAttributes.addFlashAttribute("createMessage",
+                    personForm.getFirstname() + " " + personForm.getLastname() + " created ...");
         }
         return "redirect:/";
     }
