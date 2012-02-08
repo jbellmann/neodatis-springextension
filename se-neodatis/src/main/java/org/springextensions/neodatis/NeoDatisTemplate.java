@@ -83,7 +83,6 @@ public class NeoDatisTemplate extends NeoDatisAccessor implements NeoDatisOperat
     @Override
     public void addSelectTrigger(final Class clazz, final SelectTrigger selectTrigger) {
         execute(new NeoDatisCallback() {
-
             @Override
             public Object doInNeoDatis(ODB odb) throws RuntimeException {
                 odb.addSelectTrigger(clazz, selectTrigger);
@@ -96,7 +95,6 @@ public class NeoDatisTemplate extends NeoDatisAccessor implements NeoDatisOperat
     @Override
     public void addUpdateTrigger(final Class clazz, final UpdateTrigger updateTrigger) {
         execute(new NeoDatisCallback() {
-
             @Override
             public Object doInNeoDatis(ODB odb) throws RuntimeException {
                 odb.addUpdateTrigger(clazz, updateTrigger);
@@ -120,7 +118,6 @@ public class NeoDatisTemplate extends NeoDatisAccessor implements NeoDatisOperat
     @Override
     public void commit() {
         execute(new NeoDatisCallback() {
-
             @Override
             public Object doInNeoDatis(ODB odb) throws RuntimeException {
                 odb.commit();
@@ -323,8 +320,7 @@ public class NeoDatisTemplate extends NeoDatisAccessor implements NeoDatisOperat
     }
 
     @Override
-    public <T> Objects<T> getObjects(final IQuery query, final boolean inMemory, final int startIndex,
-            final int endIndex) {
+    public <T> Objects<T> getObjects(final IQuery query, final boolean inMemory, final int startIndex, final int endIndex) {
         return (Objects<T>) execute(new NeoDatisCallback() {
             @Override
             public Object doInNeoDatis(ODB odb) throws RuntimeException {

@@ -25,8 +25,12 @@ import org.springframework.dao.DataAccessException;
  */
 public final class NeoDatisUtils {
 
-	public static DataAccessException translateException(Exception e) {
-		return new NeoDatisSystemException(e.getMessage(), e);
-	}
+    private NeoDatisUtils() {
+        //hide constructor
+    }
+
+    public static DataAccessException translateException(Exception e) {
+        return new NeoDatisSystemException(e.getMessage(), e);
+    }
 
 }

@@ -31,7 +31,7 @@ public class NeoDatisSystemException extends UncategorizedDataAccessException {
     }
 
     public NeoDatisSystemException(Throwable cause) {
-        super("neodatis access exception", cause);
+        super("neodatis system exception", cause);
     }
 
 }
