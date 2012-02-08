@@ -1,8 +1,9 @@
 # NeoDatis Spring-Extension
 ## What is NeoDatis Spring-Extension?
 
-* It is an unofficial Spring-Extension for the NeoDatis ObjectDB.
+* It is an unofficial [Spring-Extension](http://www.springsource.org/extensions) for the NeoDatis ObjectDB.
 * It supports you using NeoDatis ObjectDB in your Spring-Apps in a well known way with XXXTemplate and declarative transaction-support `@Transactional`
+* It adds an parameterized QueryType you can extend from to define the contract for native queries
 
 ## How to build
 
@@ -20,7 +21,7 @@ This project comes with a very small example application that uses
 
 * latest version of Spring (3.1.0.RELEASE)
 * annotation based configuration (no xml)
-* [Thymeleaf](http://www.thymeleaf.org/) as view technology
+* [Thymeleaf](http://www.thymeleaf.org/) as view technology but you can switch to jsp if you want (not fully tested yet).
 
 
 For trying out go to 'se-neodatis-example' folder
