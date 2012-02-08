@@ -1,8 +1,8 @@
 # NeoDatis Spring-Extension
 ## What is NeoDatis Spring-Extension?
 
-* It is an unofficial Spring-Extension for the NeoDatis Object-DB.
-* It supports you using NeoDatis ObjectDB in your Spring-Apps in a well known way with XXX-Template
+* It is an unofficial Spring-Extension for the NeoDatis ObjectDB.
+* It supports you using NeoDatis ObjectDB in your Spring-Apps in a well known way with XXXTemplate and declarative transaction-support `@Transactional`
 
 ## How to build
 
@@ -10,7 +10,7 @@ This project uses Maven to build all artifacts.
 
 Check out the source with:
 
-git clone https://github.com/jbellmann/neodatis-springextension.git
+`git clone https://github.com/jbellmann/neodatis-springextension.git`
 
 then `mvn install` will do the build.
 
@@ -24,8 +24,9 @@ This project comes with a very small example application that uses
 
 
 For trying out go to 'se-neodatis-example' folder
+
 `cd se-neodatis-example`
 
-then use `mvn t7:ru`.
+then use `mvn t7:run`.
 
-A Tomcat 7 server is started an you should point your browser to [http://localhost:9090/neodatis-example/](http://localhost:9090/neodatis-example/).
+A Tomcat 7 server is started and you should point your browser to [http://localhost:9090/neodatis-example/](http://localhost:9090/neodatis-example/).
