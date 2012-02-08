@@ -10,9 +10,9 @@ This project uses Maven to build all artifacts.
 
 Check out the source with:
 
-git clone https://github.com/jbellmann/neodatis-springextension
+git clone https://github.com/jbellmann/neodatis-springextension.git
 
-then mvn install will do the rest.
+then `mvn install` will do the build.
 
 ## Example-Application
 
@@ -24,9 +24,8 @@ This project comes with a very small example application that uses
 
 
 For trying out go to 'se-neodatis-example' folder
+`cd se-neodatis-example`
 
-cd se-neodatis-example
-
-then use 'mvn t7:run'.
+then use `mvn t7:ru`.
 
 A Tomcat 7 server is started an you should point your browser to [http://localhost:9090/neodatis-example/](http://localhost:9090/neodatis-example/).
