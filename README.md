@@ -21,7 +21,7 @@ This project comes with a very small example application that uses
 
 * latest version of Spring (3.1.0.RELEASE)
 * annotation based configuration (no xml)
-* [Thymeleaf](http://www.thymeleaf.org/) as view technology but you can switch to jsp if you want (not fully tested yet).
+* [Thymeleaf 2](http://www.thymeleaf.org/) as view technology
 
 
 For trying out go to 'se-neodatis-example' folder
