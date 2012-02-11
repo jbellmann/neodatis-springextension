@@ -78,7 +78,7 @@
 	<dependency>
 	    <groupId>org.thymeleaf</groupId>
 	    <artifactId>thymeleaf-spring3</artifactId>
-	    <version>1.1.5</version>
+	    <version>2.0.0</version>
 	</dependency>
   
     <!-- JSR 303 with Hibernate Validator -->
@@ -153,6 +153,19 @@
         <configuration>
         	<tomcatHttpPort>9090</tomcatHttpPort>
         	<tomcatShutdownPort>9005</tomcatShutdownPort>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <configuration>
+            <filesets>
+                <fileset>
+                    <directory>${basedir}</directory>
+                    <includes>
+                        <include>**/**.neodatis</include>
+                    </includes>
+                </fileset>
+            </filesets>
         </configuration>
       </plugin>
     </plugins>
